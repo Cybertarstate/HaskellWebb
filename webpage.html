@@ -1,12 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>grouper</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS 354: Haskell Language Project</title>
+    <style>
+        /* Basic CS Student Styling - Clean and Readable */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+        }
+
+        h1 {
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* Code Block Styling */
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-left: 4px solid #2c3e50;
+            overflow-x: auto;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        /* Table Styling for Comparison Section */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Link Styling */
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
-<head>
-<title>Haskell</title>
-</head>
-<title>Introduction</title>
 <body>
-grouper
+
+    <header>
+        <h1>The Haskell Programming Language</h1>
+        <p><strong>CS 354 Group Project</strong></p>
+    </header>
+
+    <!-- Part 1: Description & History -->
+    <section id="description">
+        <h2>Language Description & History</h2>
+        
+        <h3>Overview</h3>
+        <p>
+            Haskell is a <strong>purely functional</strong>, statically typed programming language. Unlike imperative languages (such as Java or C++) which focus on executing a sequence of commands to change state, Haskell focuses on evaluating expressions to produce values. It is based on <strong>lambda calculus</strong>.
+        </p>
+        <p>Key Characteristics:</p>
+        <ul>
+            <li><strong>Immutability:</strong> Variables are immutable by default. Once a value is assigned, it cannot be changed. This eliminates entire classes of bugs related to global state.</li>
+            <li><strong>Lazy Evaluation:</strong> Expressions are not evaluated until their results are actually needed. This allows for infinite data structures and modular code.</li>
+            <li><strong>Type System:</strong> Haskell features a strong, static type system with <em>type inference</em>. You rarely need to explicitly declare types, but the compiler still enforces them strictly.</li>
+        </ul>
+
+        <h3>History</h3>
+        <p>
+            In the 1980s, functional programming research was fragmented. Many researchers were creating their own lazy functional languages (such as Miranda, Lazy ML, and Orwell), but the lack of a common standard hampered collaboration.
+        </p>
+        <ul>
+            <li><strong>1987 (The Beginning):</strong> A committee was formed at the FPCA conference in Portland, Oregon. Their goal was to consolidate the existing languages into a single, open standard for purely functional programming.</li>
+            <li><strong>1990 (Haskell 1.0):</strong> The first version of the language specification was published. It was named after <strong>Haskell Brooks Curry</strong>, an American logician whose work in combinatory logic served as a foundation for modern functional programming.</li>
+            <li><strong>1998 (Haskell 98):</strong> A major milestone that established a stable, minimal version of the language for teaching and library portability. This remains the baseline for most tutorials.</li>
+            <li><strong>Modern Era:</strong> Today, the language continues to evolve primarily through the <strong>Glasgow Haskell Compiler (GHC)</strong>, which serves as the de facto standard implementation.</li>
+        </ul>
+    </section>
+
+    <!-- Part 2: Documentation Links -->
+    <section id="documentation">
+        <h2>Documentation & Resources</h2>
+        <p>Essential resources for learning and working with Haskell:</p>
+        <ul>
+            <li>
+                <strong><a href="https://www.haskell.org/" target="_blank">Haskell.org</a></strong><br>
+                The central hub for the language. Includes the official language report, downloads, and community news.
+            </li>
+            <li>
+                <strong><a href="https://hoogle.haskell.org/" target="_blank">Hoogle</a></strong><br>
+                A Haskell-specific API search engine. It allows you to search by function name or by <em>type signature</em> (e.g., searching <code>[a] -> Int</code> finds functions that convert a list to an integer).
+            </li>
+            <li>
+                <strong><a href="http://learnyouahaskell.com/" target="_blank">Learn You a Haskell for Great Good!</a></strong><br>
+                A widely used beginner tutorial. It uses illustrations and simple analogies to explain complex functional concepts like Monads and Functors.
+            </li>
+            <li>
+                <strong><a href="https://wiki.haskell.org/Haskell" target="_blank">The Haskell Wiki</a></strong><br>
+                Community-maintained documentation covering libraries, development tools, and advanced tutorials.
+            </li>
+        </ul>
+    </section>
+
+    <!-- Part 3: Installation -->
+    <section id="installation">
+        <h2>Translators & Installation Instructions</h2>
+        
+        <h3>Standard Installation (Mac/Linux)</h3>
+        <p>
+            The recommended method to install the toolchain is via <strong>GHCup</strong>. This installer manages the Glasgow Haskell Compiler (GHC), the Cabal build system, and the Haskell Language Server (HLS).
+        </p>
+        <p>Run the following in your terminal:</p>
+        <pre><code>curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh</code></pre>
+
+        <p>To verify the installation, check the versions:</p>
+        <pre><code>ghc --version
+cabal --version</code></pre>
+    </section>
+
+    <!-- Part 4: Introductory Programs -->
+    <section id="intro-programs">
+        <h2>Introductory Programs</h2>
+        <p>
+            Haskell programs start execution at the <code>main</code> function, which has the type signature <code>IO ()</code>.
+        </p>
+
+        <h3>Hello World</h3>
+        <p><strong>File:</strong> <code>hello.hs</code></p>
+        <pre><code>main :: IO ()
+main = putStrLn "Hello, world!"</code></pre>
+
+        <h4>How to Build & Run</h4>
+        <p>You can run Haskell code in two ways:</p>
+        
+        <p><strong>1. Interpret (Fastest for testing):</strong></p>
+        <pre><code>runghc hello.hs</code></pre>
+        
+        <p><strong>2. Compile to Binary (Creates an executable):</strong></p>
+        <pre><code>ghc hello.hs -o hello
+./hello</code></pre>
+    </section>
+
+    <!-- Part 5: Complex Programs -->
+    <section id="complex-programs">
+        <h2>Complex Programs</h2>
+        <p>
+            These examples demonstrate Haskell's core functional concepts: Recursion, Algebraic Data Types, and Higher-Order Functions.
+        </p>
+
+        <h3>Example 1: The Budget Auditor (Recursion)</h3>
+        <p>
+            This program takes a list of transactions (Integers) and filters it to return only the "suspicious" expenses that are over $100. It demonstrates list processing without loops.
+        </p>
+        <p><strong>File:</strong> <code>budget.hs</code></p>
+        <pre><code>-- Function: Takes a list of Ints, returns a list of Ints
+auditExpenses :: [Int] -> [Int]
+auditExpenses [] = []
+auditExpenses (x:xs)
+    | x > 100   = x : auditExpenses xs  -- Keep 'x' if it's over 100
+    | otherwise = auditExpenses xs      -- Otherwise, skip it
+
+main :: IO ()
+main = do
+    let expenses = [12, 5, 200, 45, 150, 8, 999]
+    putStrLn "Flagged Expenses (> $100):"
+    print (auditExpenses expenses)</code></pre>
+
+        <h3>Example 2: The RPG Character System (Algebraic Data Types)</h3>
+        <p>
+            This demonstrates how Haskell uses "Sum Types" to define game entities. Unlike an Object-Oriented class, we define a Type that can strictly be one of three options.
+        </p>
+        <p><strong>File:</strong> <code>rpg.hs</code></p>
+        <pre><code>-- Define the possible character classes
+data Hero = Knight | Wizard | Rogue
+
+-- Define a function that behaves differently based on the type
+specialAttack :: Hero -> String
+specialAttack Knight = "Slash with Greatsword!"
+specialAttack Wizard = "Cast Fireball!"
+specialAttack Rogue  = "Backstab!"
+
+main :: IO ()
+main = do
+    let myHero = Wizard
+    putStrLn "Combat Action:"
+    putStrLn (specialAttack myHero)</code></pre>
+
+        <h3>Example 3: The Shop Inventory (Higher-Order Functions)</h3>
+        <p>
+            This demonstrates <code>map</code>, a function that takes <em>another function</em> as an argument. Here, we apply a 10% tax calculation to every item in a list efficiently.
+        </p>
+        <p><strong>File:</strong> <code>shop.hs</code></p>
+        <pre><code>-- Takes a list of prices (Floats) and returns new prices
+addTax :: [Float] -> [Float]
+addTax prices = map (* 1.1) prices
+
+main :: IO ()
+main = do
+    let basePrices = [10.0, 20.0, 100.0]
+    let taxedPrices = addTax basePrices
+    
+    putStrLn "Prices with Tax:"
+    print taxedPrices</code></pre>
+
+    </section>
+
+    <!-- Part 6: Comparison Table -->
+    <section id="comparison">
+        <h2>Comparison with Representative Languages</h2>
+        <p>The following table compares Haskell against Java (Object-Oriented) and C (Imperative/Procedural).</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Haskell</th>
+                    <th>Java</th>
+                    <th>C</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Paradigm</strong></td>
+                    <td>Pure Functional</td>
+                    <td>Object-Oriented</td>
+                    <td>Imperative / Procedural</td>
+                </tr>
+                <tr>
+                    <td><strong>State Mutability</strong></td>
+                    <td><strong>Immutable</strong> (Variables cannot change)</td>
+                    <td>Mutable</td>
+                    <td>Mutable</td>
+                </tr>
+                <tr>
+                    <td><strong>Evaluation Strategy</strong></td>
+                    <td><strong>Lazy</strong> (Compute only when needed)</td>
+                    <td>Eager (Compute immediately)</td>
+                    <td>Eager</td>
+                </tr>
+                <tr>
+                    <td><strong>Type System</strong></td>
+                    <td>Strong, Static, Inferred</td>
+                    <td>Strong, Static</td>
+                    <td>Weak, Static</td>
+                </tr>
+                <tr>
+                    <td><strong>Memory Management</strong></td>
+                    <td>Garbage Collected</td>
+                    <td>Garbage Collected</td>
+                    <td>Manual (malloc/free)</td>
+                </tr>
+                <tr>
+                    <td><strong>Control Flow</strong></td>
+                    <td>Recursion & Pattern Matching</td>
+                    <td>Loops (for/while)</td>
+                    <td>Loops (for/while)</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
 </body>
-
-
+</html>
