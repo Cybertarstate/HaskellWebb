@@ -1,0 +1,48 @@
+lazy - only evaluate as much as the program as required to get the answer
+
+built in memory management, relieves the programemer of memory management, store is allocated an initialized implicitly, and recovered automatically by garbage collector
+
+innovative type system which supports a systemic form a oerloading and a module system
+
+strongly typed
+
+functional language:single expression, executed by evaluating the expression, focus on what is to be computed, not how it should be computed
+
+(working in VS code)
+for mac install "GHCup"
+
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+
+ghc --version
+cabal --version
+stack --version
+haskell-language-server --version
+
+--haskell hello world
+main :: IO ()
+main = putStrLn "Hello, world!"
+--save as
+hello.hs
+--run it no compile
+runghc hello.hs
+--save as binary
+ghc hello.hs
+--run executable
+./hello
+--side note
+cabal is haskell build tool, builds code, managages libraries and dependencies
+stack is alternative build tool, stack is simpler and more beginner friendly, cabal is the official
+
+
+
+--research
+https://www.haskell.org/
+
+
+
+Haskell is a purely functional programming language based on lambda calculus. No global state or mutable variables. Increment a number in tuple, need to create a new tuple with a new value. Strongly typed programming language and its declarative. Type inference is powerful enough to not need type annotations. Instead of while and for loops, we have recursion. Conditionals in the form of if, algebraic data types. Lambda calculus polymorphism. Lazy semantics, normal order, call by name. Monads....
+
+Made up of a series of function definitions, all functions have a result, no void functions.  
+
+https://web.stanford.edu/class/cs242/materials/lectures/haskell-notes.pdf
+
