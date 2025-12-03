@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,9 @@
             background-color: #f9f9f9;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             color: #2c3e50;
             margin-top: 1.5em;
         }
@@ -31,7 +34,7 @@
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         /* Code Block Styling */
@@ -57,7 +60,8 @@
             margin-top: 15px;
         }
 
-        th, td {
+        th,
+        td {
             text-align: left;
             padding: 12px;
             border-bottom: 1px solid #ddd;
@@ -83,6 +87,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -93,27 +98,42 @@
     <!-- Part 1: Description & History -->
     <section id="description">
         <h2>Language Description & History</h2>
-        
+
         <h3>Overview</h3>
         <p>
-            Haskell is a <strong>purely functional</strong>, statically typed programming language. Unlike imperative languages (such as Java or C++) which focus on executing a sequence of commands to change state, Haskell focuses on evaluating expressions to produce values. It is based on <strong>lambda calculus</strong>.
+            Haskell is a <strong>purely functional</strong>, statically typed programming language. Unlike imperative
+            languages (such as Java or C++) which focus on executing a sequence of commands to change state, Haskell
+            focuses on evaluating expressions to produce values. It is based on <strong>lambda calculus</strong>.
         </p>
         <p>Key Characteristics:</p>
         <ul>
-            <li><strong>Immutability:</strong> Variables are immutable by default. Once a value is assigned, it cannot be changed. This eliminates entire classes of bugs related to global state.</li>
-            <li><strong>Lazy Evaluation:</strong> Expressions are not evaluated until their results are actually needed. This allows for infinite data structures and modular code.</li>
-            <li><strong>Type System:</strong> Haskell features a strong, static type system with <em>type inference</em>. You rarely need to explicitly declare types, but the compiler still enforces them strictly.</li>
+            <li><strong>Immutability:</strong> Variables are immutable by default. Once a value is assigned, it cannot
+                be changed. This eliminates entire classes of bugs related to global state.</li>
+            <li><strong>Lazy Evaluation:</strong> Expressions are not evaluated until their results are actually needed.
+                This allows for infinite data structures and modular code.</li>
+            <li><strong>Type System:</strong> Haskell features a strong, static type system with <em>type
+                    inference</em>. You rarely need to explicitly declare types, but the compiler still enforces them
+                strictly.</li>
         </ul>
 
         <h3>History</h3>
         <p>
-            In the 1980s, functional programming research was fragmented. Many researchers were creating their own lazy functional languages (such as Miranda, Lazy ML, and Orwell), but the lack of a common standard hampered collaboration.
+            In the 1980s, functional programming research was fragmented. Many researchers were creating their own lazy
+            functional languages (such as Miranda, Lazy ML, and Orwell), but the lack of a common standard hampered
+            collaboration.
         </p>
         <ul>
-            <li><strong>1987 (The Beginning):</strong> A committee was formed at the FPCA conference in Portland, Oregon. Their goal was to consolidate the existing languages into a single, open standard for purely functional programming.</li>
-            <li><strong>1990 (Haskell 1.0):</strong> The first version of the language specification was published. It was named after <strong>Haskell Brooks Curry</strong>, an American logician whose work in combinatory logic served as a foundation for modern functional programming.</li>
-            <li><strong>1998 (Haskell 98):</strong> A major milestone that established a stable, minimal version of the language for teaching and library portability. This remains the baseline for most tutorials.</li>
-            <li><strong>Modern Era:</strong> Today, the language continues to evolve primarily through the <strong>Glasgow Haskell Compiler (GHC)</strong>, which serves as the de facto standard implementation.</li>
+            <li><strong>1987 (The Beginning):</strong> A committee was formed at the FPCA conference in Portland,
+                Oregon. Their goal was to consolidate the existing languages into a single, open standard for purely
+                functional programming.</li>
+            <li><strong>1990 (Haskell 1.0):</strong> The first version of the language specification was published. It
+                was named after <strong>Haskell Brooks Curry</strong>, an American logician whose work in combinatory
+                logic served as a foundation for modern functional programming.</li>
+            <li><strong>1998 (Haskell 98):</strong> A major milestone that established a stable, minimal version of the
+                language for teaching and library portability. This remains the baseline for most tutorials.</li>
+            <li><strong>Modern Era:</strong> Today, the language continues to evolve primarily through the
+                <strong>Glasgow Haskell Compiler (GHC)</strong>, which serves as the de facto standard implementation.
+            </li>
         </ul>
     </section>
 
@@ -128,11 +148,15 @@
             </li>
             <li>
                 <strong><a href="https://hoogle.haskell.org/" target="_blank">Hoogle</a></strong><br>
-                A Haskell-specific API search engine. It allows you to search by function name or by <em>type signature</em> (e.g., searching <code>[a] -> Int</code> finds functions that convert a list to an integer).
+                A Haskell-specific API search engine. It allows you to search by function name or by <em>type
+                    signature</em> (e.g., searching <code>[a] -> Int</code> finds functions that convert a list to an
+                integer).
             </li>
             <li>
-                <strong><a href="http://learnyouahaskell.com/" target="_blank">Learn You a Haskell for Great Good!</a></strong><br>
-                A widely used beginner tutorial. It uses illustrations and simple analogies to explain complex functional concepts like Monads and Functors.
+                <strong><a href="http://learnyouahaskell.com/" target="_blank">Learn You a Haskell for Great
+                        Good!</a></strong><br>
+                A widely used beginner tutorial. It uses illustrations and simple analogies to explain complex
+                functional concepts like Monads and Functors.
             </li>
             <li>
                 <strong><a href="https://wiki.haskell.org/Haskell" target="_blank">The Haskell Wiki</a></strong><br>
@@ -144,10 +168,11 @@
     <!-- Part 3: Installation -->
     <section id="installation">
         <h2>Translators & Installation Instructions</h2>
-        
+
         <h3>Standard Installation (Mac/Linux)</h3>
         <p>
-            The recommended method to install the toolchain is via <strong>GHCup</strong>. This installer manages the Glasgow Haskell Compiler (GHC), the Cabal build system, and the Haskell Language Server (HLS).
+            The recommended method to install the toolchain is via <strong>GHCup</strong>. This installer manages the
+            Glasgow Haskell Compiler (GHC), the Cabal build system, and the Haskell Language Server (HLS).
         </p>
         <p>Run the following in your terminal:</p>
         <pre><code>curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh</code></pre>
@@ -161,7 +186,8 @@ cabal --version</code></pre>
     <section id="intro-programs">
         <h2>Introductory Programs</h2>
         <p>
-            Haskell programs start execution at the <code>main</code> function, which has the type signature <code>IO ()</code>.
+            Haskell programs start execution at the <code>main</code> function, which has the type signature
+            <code>IO ()</code>.
         </p>
 
         <h3>Hello World</h3>
@@ -171,43 +197,22 @@ main = putStrLn "Hello, world!"</code></pre>
 
         <h4>How to Build & Run</h4>
         <p>You can run Haskell code in two ways:</p>
-        
+
         <p><strong>1. Interpret (Fastest for testing):</strong></p>
         <pre><code>runghc hello.hs</code></pre>
-        
+
         <p><strong>2. Compile to Binary (Creates an executable):</strong></p>
         <pre><code>ghc hello.hs -o hello
 ./hello</code></pre>
     </section>
 
-    <!-- Part 5: Complex Programs -->
-    <section id="complex-programs">
-        <h2>Complex Programs</h2>
-        <p>
-            These examples demonstrate Haskell's core functional concepts: Recursion, Algebraic Data Types, and Higher-Order Functions.
-        </p>
+    <section>
+        <h2>Simple Programs</h2>
 
-        <h3>Example 1: The Budget Auditor (Recursion)</h3>
+        <h3>The RPG Character System (Algebraic Data Types)</h3>
         <p>
-            This program takes a list of transactions (Integers) and filters it to return only the "suspicious" expenses that are over $100. It demonstrates list processing without loops.
-        </p>
-        <p><strong>File:</strong> <code>budget.hs</code></p>
-        <pre><code>-- Function: Takes a list of Ints, returns a list of Ints
-auditExpenses :: [Int] -> [Int]
-auditExpenses [] = []
-auditExpenses (x:xs)
-    | x > 100   = x : auditExpenses xs  -- Keep 'x' if it's over 100
-    | otherwise = auditExpenses xs      -- Otherwise, skip it
-
-main :: IO ()
-main = do
-    let expenses = [12, 5, 200, 45, 150, 8, 999]
-    putStrLn "Flagged Expenses (> $100):"
-    print (auditExpenses expenses)</code></pre>
-
-        <h3>Example 2: The RPG Character System (Algebraic Data Types)</h3>
-        <p>
-            This demonstrates how Haskell uses "Sum Types" to define game entities. Unlike an Object-Oriented class, we define a Type that can strictly be one of three options.
+            This demonstrates how Haskell uses "Sum Types" to define game entities. Unlike an Object-Oriented class, we
+            define a Type that can strictly be one of three options.
         </p>
         <p><strong>File:</strong> <code>rpg.hs</code></p>
         <pre><code>-- Define the possible character classes
@@ -224,10 +229,58 @@ main = do
     let myHero = Wizard
     putStrLn "Combat Action:"
     putStrLn (specialAttack myHero)</code></pre>
+        <p>To isolate the side effects all of the io code in a block that is allowed to change read and/or write data from the world.
+            All code that needs to read or write data needs to be in these IO blocks.
+        </p>
 
-        <h3>Example 3: The Shop Inventory (Higher-Order Functions)</h3>
+        <h3>List Comprehensions</h3>
         <p>
-            This demonstrates <code>map</code>, a function that takes <em>another function</em> as an argument. Here, we apply a 10% tax calculation to every item in a list efficiently.
+            Haskell has list comprehensions that let list be either quickly created or modified. simmilar to python they allow filtering and 
+            reshaping the data. They can also be easily nested to create complex outputs quickly.
+        </p>
+        <pre><code>main :: IO ()
+main = do
+    print [0..10]
+    print [x * 2 | x <- [0..5]]
+    print [x * 2 | x <- [0..5], x `mod` 2 == 0]</code></pre>
+        <p>The backtics around mod here are syntax to execute a function in an infix manner. It is equivilant to executing 
+            <pre><code>mod x 2</code></pre>
+            ranges can also be infinite such as:
+            <pre><code>[0..]</code></pre>
+            which will produce values as they are needed by another part of the program.
+        </p>
+
+        <h3>Function Types</h3>
+        <p>
+            Haskell's function types are weird. For example if I had a function that adds two ints and returnes the result I would write it
+        </p>
+        <pre><code>add :: Int -> Int -> Int
+add x y = x + y</code></pre>
+        <p>This actually means in pseudocode 
+            <pre><code>add(Int) -> (FN(Int) -> Int)</code></pre>
+            Where the intermediate function is unnamed. This is because of how functions work in lambda calculus which haskell is based on.
+        </p>
+        <h3>Reading Files</h3>
+        <p>
+            This demonstrates <code>map</code>, a function that takes <em>another function</em> as an argument. Here, we
+            apply a 10% tax calculation to every item in a list efficiently.
+        </p>
+        <p><strong>File:</strong> <code>shop.hs</code></p>
+        <pre><code>-- Takes a list of prices (Floats) and returns new prices
+addTax :: [Float] -> [Float]
+addTax prices = map (* 1.1) prices
+
+main :: IO ()
+main = do
+    let basePrices = [10.0, 20.0, 100.0]
+    let taxedPrices = addTax basePrices
+    
+    putStrLn "Prices with Tax:"
+    print taxedPrices</code></pre>
+        <h3>The Shop Inventory (Higher-Order Functions)</h3>
+        <p>
+            This demonstrates <code>map</code>, a function that takes <em>another function</em> as an argument. Here, we
+            apply a 10% tax calculation to every item in a list efficiently.
         </p>
         <p><strong>File:</strong> <code>shop.hs</code></p>
         <pre><code>-- Takes a list of prices (Floats) and returns new prices
@@ -244,11 +297,41 @@ main = do
 
     </section>
 
+    <!-- Part 5: Complex Programs -->
+    <section id="complex-programs">
+        <h2>Complex Programs</h2>
+        <p>
+            These examples demonstrate Haskell's core functional concepts: Recursion, Algebraic Data Types, and
+            Higher-Order Functions.
+        </p>
+
+        <h3>Example 1: The Budget Auditor (Recursion)</h3>
+        <p>
+            This program takes a list of transactions (Integers) and filters it to return only the "suspicious" expenses
+            that are over $100. It demonstrates list processing without loops.
+        </p>
+        <p><strong>File:</strong> <code>budget.hs</code></p>
+        <pre><code>-- Function: Takes a list of Ints, returns a list of Ints
+auditExpenses :: [Int] -> [Int]
+auditExpenses [] = []
+auditExpenses (x:xs)
+    | x > 100   = x : auditExpenses xs  -- Keep 'x' if it's over 100
+    | otherwise = auditExpenses xs      -- Otherwise, skip it
+
+main :: IO ()
+main = do
+    let expenses = [12, 5, 200, 45, 150, 8, 999]
+    putStrLn "Flagged Expenses (> $100):"
+    print (auditExpenses expenses)</code></pre>
+
+
+    </section>
+
     <!-- Part 6: Comparison Table -->
     <section id="comparison">
         <h2>Comparison with Representative Languages</h2>
         <p>The following table compares Haskell against Java (Object-Oriented) and C (Imperative/Procedural).</p>
-        
+
         <table>
             <thead>
                 <tr>
@@ -300,4 +383,5 @@ main = do
     </section>
 
 </body>
+
 </html>
