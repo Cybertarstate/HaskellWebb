@@ -260,23 +260,6 @@ add x y = x + y</code></pre>
             <pre><code>add(Int) -> (FN(Int) -> Int)</code></pre>
             Where the intermediate function is unnamed. This is because of how functions work in lambda calculus which haskell is based on.
         </p>
-        <h3>Reading Files</h3>
-        <p>
-            This demonstrates <code>map</code>, a function that takes <em>another function</em> as an argument. Here, we
-            apply a 10% tax calculation to every item in a list efficiently.
-        </p>
-        <p><strong>File:</strong> <code>shop.hs</code></p>
-        <pre><code>-- Takes a list of prices (Floats) and returns new prices
-addTax :: [Float] -> [Float]
-addTax prices = map (* 1.1) prices
-
-main :: IO ()
-main = do
-    let basePrices = [10.0, 20.0, 100.0]
-    let taxedPrices = addTax basePrices
-    
-    putStrLn "Prices with Tax:"
-    print taxedPrices</code></pre>
         <h3>The Shop Inventory (Higher-Order Functions)</h3>
         <p>
             This demonstrates <code>map</code>, a function that takes <em>another function</em> as an argument. Here, we
