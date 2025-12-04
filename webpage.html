@@ -307,19 +307,29 @@ main = do
 
         <h3>Example 7: Fibonacci Function</h3>
         <p>
-            Demonstrates Lazy Evaluation, recursion, and Haskell lambda functions.
+            Demonstrates Lazy Evaluation, recursion, and lambda function, list traversal.
         </p>
         <p><strong>File:</strong> <code>fib.hs</code></p>
         <pre><code>import Debug.Trace (trace)
---zipwith combines two lists element-wise, applies function to each pair
---fib is an infinite list of Fibo Numbers
+--higher order helper function that works like zipWith
+zipper :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipper _ [] _ = []
+zipper _ _ [] = []
+zipper f (x:xs) (y:ys) = f x y : zipper f xs ys
+
 fib :: [Int]
-fib = 0 : 1 : zipWith (+) fib (tail fib)
+fib = 0 : 1 : zipper (+) fib (tail fib)
+
+--helper function that works like take
+newtake :: Int -> [a] -> [a]
+newtake 0 _ = []
+newtake _ [] = []
+newtake n (x:xs) = x : newtake (n-1) xs
 
 main :: IO ()
 main = do
-    let first8 = take 8 fib
-        fibeq = zipWith (\a b -> show a ++ " + " ++ show b) first8 (tail first8)
+    let first8 = newtake 8 fib
+        fibeq = zipper (\a b -> show a ++ " + " ++ show b) first8 (tail first8)
     print fibeq
     putStrLn $ unlines fibeq
     print first8</code></pre>
@@ -333,6 +343,29 @@ main = do
 8 + 13
 
 [0,1,1,2,3,5,8,13]</code></pre>
+
+        <h3>Example 8: Fibonacci Function #2</h3>
+        <p>
+            Demonstrates recursive function deffinition, and high order function, list traversal.
+        </p>
+        <p><strong>File:</strong> <code>fib2.hs</code></p>
+        <pre><code>-- Recursive Fibonacci function
+fib :: Int -> Int
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)
+
+newmap :: (a -> b) -> [a] -> [b]
+newmap _ [] = []
+newmap f (x:xs) = f x : newmap f xs
+
+main :: IO ()
+main = do
+    let first8 = newmap fib [0..7]
+    --[fib 0, fib 1, fib 2, fib 3, fib 4, fib 5, fib 6, fib 7]        
+    
+    print first8</code></pre>
+     <pre><code>[0,1,1,2,3,5,8,13]</code></pre>
 
  
 

@@ -74,8 +74,8 @@ calcInterest :: Account -> Int -> Double
 calcInterest a 0 = accountBalance a
 calcInterest a n = calcInterest a (n-1) * (1 + interest a / 100)
 
-menu :: Account -> IO ()
-menu account = do
+menu :: Account -> IO () --type signature
+menu account = do --function body
     putStrLn "\n===== Grouper Bank Group Inc. ====="
     putStrLn "1. Account Balance"
     putStrLn "2. Calculate Interest"
