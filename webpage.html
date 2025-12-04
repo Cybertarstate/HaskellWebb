@@ -95,7 +95,6 @@
         <p><strong>CS 354 Group Project</strong></p>
     </header>
 
-    <!-- Part 1: Description & History -->
     <section id="description">
         <h2>Language Description & History</h2>
 
@@ -137,7 +136,6 @@
         </ul>
     </section>
 
-    <!-- Part 2: Documentation Links -->
     <section id="documentation">
         <h2>Documentation & Resources</h2>
         <p>Essential resources for learning and working with Haskell:</p>
@@ -165,7 +163,6 @@
         </ul>
     </section>
 
-    <!-- Part 3: Installation -->
     <section id="installation">
         <h2>Translators & Installation Instructions</h2>
 
@@ -182,7 +179,6 @@
 cabal --version</code></pre>
     </section>
 
-    <!-- Part 4: Introductory Programs -->
     <section id="intro-programs">
         <h2>Introductory Programs</h2>
         <p>
@@ -209,7 +205,7 @@ main = putStrLn "Hello, world!"</code></pre>
     <section>
         <h2>Simple Programs</h2>
 
-        <h3>The RPG Character System (Algebraic Data Types)</h3>
+        <h3>Example 1: The RPG Character System (Algebraic Data Types)</h3>
         <p>
             This demonstrates how Haskell uses "Sum Types" to define game entities. Unlike an Object-Oriented class, we
             define a Type that can strictly be one of three options.
@@ -229,38 +225,19 @@ main = do
     let myHero = Wizard
     putStrLn "Combat Action:"
     putStrLn (specialAttack myHero)</code></pre>
-        <p>To isolate the side effects all of the io code in a block that is allowed to change read and/or write data from the world.
-            All code that needs to read or write data needs to be in these IO blocks.
-        </p>
+        <p>To isolate the side effects, all of the IO code is in a block. This separates the code that changes/reads the world from the "pure" logic.</p>
 
-        <h3>List Comprehensions</h3>
+        <h3>Example 2: List Comprehensions</h3>
         <p>
-            Haskell has list comprehensions that let list be either quickly created or modified. simmilar to python they allow filtering and 
-            reshaping the data. They can also be easily nested to create complex outputs quickly.
+            Haskell has list comprehensions that allow lists to be quickly created or modified. Similar to Python, they allow filtering and reshaping data. They can also be easily nested to create complex outputs quickly.
         </p>
         <pre><code>main :: IO ()
 main = do
     print [0..10]
     print [x * 2 | x <- [0..5]]
     print [x * 2 | x <- [0..5], x `mod` 2 == 0]</code></pre>
-        <p>The backtics around mod here are syntax to execute a function in an infix manner. It is equivilant to executing 
-            <pre><code>mod x 2</code></pre>
-            ranges can also be infinite such as:
-            <pre><code>[0..]</code></pre>
-            which will produce values as they are needed by another part of the program.
-        </p>
 
-        <h3>Function Types</h3>
-        <p>
-            Haskell's function types are weird. For example if I had a function that adds two ints and returnes the result I would write it
-        </p>
-        <pre><code>add :: Int -> Int -> Int
-add x y = x + y</code></pre>
-        <p>This actually means in pseudocode 
-            <pre><code>add(Int) -> (FN(Int) -> Int)</code></pre>
-            Where the intermediate function is unnamed. This is because of how functions work in lambda calculus which haskell is based on.
-        </p>
-        <h3>The Shop Inventory (Higher-Order Functions)</h3>
+        <h3>Example 3: The Shop Inventory (Higher-Order Functions)</h3>
         <p>
             This demonstrates <code>map</code>, a function that takes <em>another function</em> as an argument. Here, we
             apply a 10% tax calculation to every item in a list efficiently.
@@ -278,71 +255,7 @@ main = do
     putStrLn "Prices with Tax:"
     print taxedPrices</code></pre>
 
- <h3>Example 4: getMax Function</h3>
-        <p>
-            Demonstrates recursion in Haskell as well as well as some basic error handling  
-        </p>
-        <p><strong>File:</strong> <code>getMax.hs</code></p>
-        <pre><code>getMax :: Ord a => [a] -> a
-getMax [] = error "Can't get a max out of an empty list"
-getMax [x] = x
-getMax (x:xs) = max x (getMax xs) 
-
-main :: IO ()
-main = do
-    let nums = [2, 9, 10, 12, 1]
-    let higher = getMax nums
-    print higher</code></pre>
-
-     <h3>Example 5: Factorial Function</h3>
-        <p>
-            Demonstrates recursion, basic error handling, and the use of guards.
-        </p>
-        <p><strong>File:</strong> <code>factorial.hs</code></p>
-        <pre><code>factorial :: Int -> Int
-factorial 0 = 1
-factorial n 
-    | n < 0 = error "The factorial of a negative number is undefined"
-    | otherwise = n * factorial (n-1)
-
-main :: IO ()
-main = do
-    print (factorial 5)</code></pre>
-     <h3>Example 6: Fibonacci Function</h3>
-        <p>
-            Demonstrates Lazy Evaluation, recursion, and haskell lambda function.
-        </p>
-        <p><strong>File:</strong> <code>fibo.hs</code></p>
-        <pre><code>import Debug.Trace (trace)
---zipwith combines two lists element-wise, applies function to each pair
---fib is an infinite list of Fibo Numbera
-fib :: [Int]
-fib = 0 : 1 : zipWith (+) fib (tail fib)
-
---"\a b" is lambda function takes two arg, output a string
--- lambda function is an anonymous function
--- unlines takes a list of string, and seperates each element by new line
--- putStrLn print the string directly without the quotes
-main :: IO ()
-main = do
-    let first8 = take 8 fib
-        fibeq = zipWith (\a b -> show a ++ " + " ++ show b) first8 (tail first8)
-    print fibeq
-    putStrLn $ unlines fibeq
-    print first8 	
-</code></pre>
-
-    </section>
-
-    <!-- Part 5: Complex Programs -->
-    <section id="complex-programs">
-        <h2>Complex Programs</h2>
-        <p>
-            These examples demonstrate Haskell's core functional concepts: Recursion, Algebraic Data Types, and
-            Higher-Order Functions.
-        </p>
-
-        <h3>Example 1: The Budget Auditor (Recursion)</h3>
+        <h3>Example 4: The Budget Auditor (Recursion)</h3>
         <p>
             This program takes a list of transactions (Integers) and filters it to return only the "suspicious" expenses
             that are over $100. It demonstrates list processing without loops.
@@ -361,10 +274,117 @@ main = do
     putStrLn "Flagged Expenses (> $100):"
     print (auditExpenses expenses)</code></pre>
 
+        <h3>Example 5: getMax Function</h3>
+        <p>
+            Demonstrates recursion in Haskell as well as basic error handling.
+        </p>
+        <p><strong>File:</strong> <code>getMax.hs</code></p>
+        <pre><code>getMax :: Ord a => [a] -> a
+getMax [] = error "Can't get a max out of an empty list"
+getMax [x] = x
+getMax (x:xs) = max x (getMax xs) 
+
+main :: IO ()
+main = do
+    let nums = [2, 9, 10, 12, 1]
+    let higher = getMax nums
+    print higher</code></pre>
+
+        <h3>Example 6: Factorial Function</h3>
+        <p>
+            Demonstrates recursion, basic error handling, and the use of guards.
+        </p>
+        <p><strong>File:</strong> <code>factorial.hs</code></p>
+        <pre><code>factorial :: Int -> Int
+factorial 0 = 1
+factorial n 
+    | n < 0 = error "The factorial of a negative number is undefined"
+    | otherwise = n * factorial (n-1)
+
+main :: IO ()
+main = do
+    print (factorial 5)</code></pre>
+
+        <h3>Example 7: Fibonacci Function</h3>
+        <p>
+            Demonstrates Lazy Evaluation, recursion, and Haskell lambda functions.
+        </p>
+        <p><strong>File:</strong> <code>fib.hs</code></p>
+        <pre><code>import Debug.Trace (trace)
+--zipwith combines two lists element-wise, applies function to each pair
+--fib is an infinite list of Fibo Numbers
+fib :: [Int]
+fib = 0 : 1 : zipWith (+) fib (tail fib)
+
+main :: IO ()
+main = do
+    let first8 = take 8 fib
+        fibeq = zipWith (\a b -> show a ++ " + " ++ show b) first8 (tail first8)
+    print fibeq
+    putStrLn $ unlines fibeq
+    print first8</code></pre>
+
+        <h3>Example 8: QuickSort</h3>
+        <p>
+            A classic example of Haskell's elegance. It implements the Quicksort algorithm using list filtering and recursion in very few lines.
+        </p>
+        <p><strong>File:</strong> <code>quicksort.hs</code></p>
+        <pre><code>quicksort :: Ord a => [a] -> [a]
+quicksort []     = []
+quicksort (p:xs) = (quicksort lesser) ++ [p] ++ (quicksort greater)
+    where
+        lesser  = filter (< p) xs
+        greater = filter (>= p) xs</code></pre>
+
+        <h3>Example 9: Sum of List</h3>
+        <p>
+            A simple demonstration of recursion on a list, manually implementing the sum function.
+        </p>
+        <p><strong>File:</strong> <code>sum.hs</code></p>
+        <pre><code>sum :: [Int] -> Int
+sum [] = 0
+sum (h:t) = h + sum t
+
+main = print (sum [5,6,1,8,3,7])</code></pre>
 
     </section>
 
-    <!-- Part 6: Comparison Table -->
+    <section id="complex-programs">
+        <h2>Complex Programs</h2>
+        <p>
+            Our main complex application demonstrates how to build a stateful interactive system using a purely functional language.
+        </p>
+
+        <h3>The Banking System (State Management & Transaction History)</h3>
+        <p>
+            This program models a Bank with multiple account types (Checking and Savings). It overcomes Haskell's immutability challenge by using <strong>Recursion</strong> to pass the updated state of the world to the next iteration of the loop.
+        </p>
+        <p><strong>Key Features:</strong></p>
+        <ul>
+            <li><strong>Algebraic Data Types:</strong> Uses <code>CheckingAccount</code> and <code>SavingsAccount</code> constructors.</li>
+            <li><strong>Recursive State:</strong> The <code>menu</code> function calls itself with a new <code>Account</code> object every time a deposit or withdrawal is made.</li>
+            <li><strong>Transaction History:</strong> Since we cannot append to a variable, the Account object carries a <code>[String]</code> list of its own history, which grows with every transaction.</li>
+            <li><strong>Account Selection:</strong> Allows the user to switch between different accounts in the bank.</li>
+        </ul>
+        <p><strong>File:</strong> <code>bank.hs</code></p>
+        <pre><code>-- Partial view of the core Logic (State Passing)
+
+deposit :: Double -> Account -> Account
+deposit amount (CheckingAccount id name balance log) = 
+    CheckingAccount id name (balance + amount) (("Deposited " ++ show amount) : log)
+
+-- The recursive menu that maintains state
+menu :: Account -> IO ()
+menu account = do
+    -- ... print options ...
+    choice <- getLine
+    case choice of
+        "3" -> do
+            amount <- readLn
+            let newAccount = deposit amount account
+            menu newAccount  -- RECURSION: Pass the new state forward</code></pre>
+    </section>
+
     <section id="comparison">
         <h2>Comparison with Representative Languages</h2>
         <p>The following table compares Haskell against Java (Object-Oriented) and C (Imperative/Procedural).</p>
