@@ -91,7 +91,7 @@
 <body>
 
     <header>
-        <h1>The Haskell Programming Language</h1>
+        <h1>Grouper::The Haskell Programming Language</h1>
         <p><strong>CS 354 Group Project</strong></p>
     </header>
 
@@ -323,29 +323,18 @@ main = do
     print fibeq
     putStrLn $ unlines fibeq
     print first8</code></pre>
+     <pre><code>["0 + 1","1 + 1","1 + 2","2 + 3","3 + 5","5 + 8","8 + 13"]
+0 + 1
+1 + 1
+1 + 2
+2 + 3
+3 + 5
+5 + 8
+8 + 13
 
-        <h3>Example 8: QuickSort</h3>
-        <p>
-            A classic example of Haskell's elegance. It implements the Quicksort algorithm using list filtering and recursion in very few lines.
-        </p>
-        <p><strong>File:</strong> <code>quicksort.hs</code></p>
-        <pre><code>quicksort :: Ord a => [a] -> [a]
-quicksort []     = []
-quicksort (p:xs) = (quicksort lesser) ++ [p] ++ (quicksort greater)
-    where
-        lesser  = filter (< p) xs
-        greater = filter (>= p) xs</code></pre>
+[0,1,1,2,3,5,8,13]</code></pre>
 
-        <h3>Example 9: Sum of List</h3>
-        <p>
-            A simple demonstration of recursion on a list, manually implementing the sum function.
-        </p>
-        <p><strong>File:</strong> <code>sum.hs</code></p>
-        <pre><code>sum :: [Int] -> Int
-sum [] = 0
-sum (h:t) = h + sum t
-
-main = print (sum [5,6,1,8,3,7])</code></pre>
+ 
 
     </section>
 
