@@ -4,7 +4,7 @@ import Language.Haskell.TH.Syntax (justName)
 
 newtype Customer = Customer
     { customerName :: String
-    } deriving (Show, Eq)
+    } deriving (Show, Eq) --allows us to print Customers and compare them
 
 -- Modified Account to include a log for history
 -- We need to store the history inside the object since we can't use a global variable
@@ -21,7 +21,7 @@ data Account = CheckingAccount
     , interestRate :: Double
     , accountLog :: [String] 
     }
-    deriving (Show, Eq)
+    deriving (Show, Eq) --allows us to print Accounts and compare them
 
 bank :: [Account]
 bank = []
