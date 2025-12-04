@@ -1,4 +1,6 @@
 import System.IO (hFlush, stdout)
+import Numeric (showFFloat)
+import Language.Haskell.TH.Syntax (justName)
 
 newtype Customer = Customer
     { customerName :: String
@@ -13,7 +15,8 @@ data Account = CheckingAccount
     , accountLog :: [String] 
     }
     | SavingsAccount  
-    { accountCustomer :: Customer
+    { accountID :: Int
+    , accountCustomer :: Customer
     , accountBalance :: Double
     , interestRate :: Double
     , accountLog :: [String] 
@@ -39,7 +42,8 @@ defaultChecking = CheckingAccount
 
 defaultSavings :: Account
 defaultSavings = SavingsAccount
-    { accountCustomer = defaultCustomer
+    { accountID = 321
+    , accountCustomer = defaultCustomer
     , accountBalance = 0.0
     , interestRate = 0.00
     , accountLog = ["Account Opened"]
@@ -49,16 +53,16 @@ defaultSavings = SavingsAccount
 deposit :: Double -> Account -> Account
 deposit amount (CheckingAccount id name balance log) = 
     CheckingAccount id name (balance + amount) (("Deposited " ++ show amount) : log)
-deposit amount (SavingsAccount name balance rate log) = 
-    SavingsAccount name (balance + amount) rate (("Deposited " ++ show amount) : log)
+deposit amount (SavingsAccount id name balance rate log) = 
+    SavingsAccount id name (balance + amount) rate (("Deposited " ++ show amount) : log)
 
 withdraw :: Double -> Account -> Account
 withdraw amount (CheckingAccount id name balance log) 
     | amount <= balance = CheckingAccount id name (balance - amount) (("Withdrew " ++ show amount) : log)
     | otherwise         = CheckingAccount id name balance (("Failed Withdrawal of " ++ show amount) : log)
-withdraw amount (SavingsAccount name balance rate log) 
-    | amount <= balance = SavingsAccount name (balance - amount) rate (("Withdrew " ++ show amount) : log)
-    | otherwise         = SavingsAccount name balance rate (("Failed Withdrawal of " ++ show amount) : log)
+withdraw amount (SavingsAccount id name balance rate log) 
+    | amount <= balance = SavingsAccount id name (balance - amount) rate (("Withdrew " ++ show amount) : log)
+    | otherwise         = SavingsAccount id name balance rate (("Failed Withdrawal of " ++ show amount) : log)
 
 -- Helper to get interest rate safely
 interest :: Account -> Double
@@ -68,7 +72,7 @@ interest acc = case acc of
 
 calcInterest :: Account -> Int -> Double
 calcInterest a 0 = accountBalance a
-calcInterest a n = (calcInterest a (n-1)) * (1.0 + (interest a))
+calcInterest a n = calcInterest a (n-1) * (1 + interest a / 100)
 
 menu :: Account -> IO ()
 menu account = do
@@ -78,7 +82,8 @@ menu account = do
     putStrLn "3. Deposit"
     putStrLn "4. Withdraw"
     putStrLn "5. View Transaction History"
-    putStrLn "6. Quit"
+    putStrLn "6. Account Selection"
+    putStrLn "7. Quit"
     putStr "Enter your choice: "
     hFlush stdout
 
@@ -86,14 +91,14 @@ menu account = do
     case choice of
         "1" -> do
             putStrLn $ "Account Balance Is " ++ show (accountBalance account)
-            putStrLn $ "Account interest rate is " ++ show (interest account)
+            putStrLn $ "Account interest rate is " ++ showFFloat (Just 2) (interest account) "" ++ "%"
             menu account
         "2" -> do
             putStr "Enter number of years for interest: "
             hFlush stdout
             y <- readLn
-            putStrLn $ "Account interest rate is " ++ show (interest account)
-            putStrLn $ "Total is: " ++ show (calcInterest account y)
+            putStrLn $ "Account interest rate is " ++ showFFloat (Just 2) (interest account) "" ++ "%"
+            putStrLn $ "New Bal: " ++ showFFloat (Just 2) (calcInterest account y) ""
             menu account
         "3" -> do
             putStr "Enter the amount to deposit: "
@@ -115,7 +120,9 @@ menu account = do
             -- We reverse the log because we prepended new items to the front
             mapM_ putStrLn (reverse (accountLog account))
             menu account
-        "6" -> putStrLn "Goodbye!" 
+        "6" -> do
+            accountSelect bank1
+        "7" -> putStrLn "Goodbye!" 
         _   -> do
             putStrLn "Invalid choice, try again."
             menu account
@@ -132,12 +139,13 @@ accountSelect a = do
     acct <- readLn
     menu (a !! acct)
 
+customer1 = defaultCustomer { customerName = "Jimmy Buffet" }
+    -- Create default accounts with initial logs
+checking1 = defaultChecking { accountID = 001, accountCustomer = customer1, accountBalance = 1500.0 }
+savings1 = defaultSavings { accountID = 002, accountCustomer = customer1, accountBalance = 2000.0, interestRate = 0.05 }        
+bank1 = [savings1 , checking1]
+
 main :: IO ()
 main = do
-    let customer1 = defaultCustomer { customerName = "Jimmy Buffet" }
-        -- Create default accounts with initial logs
-        checking1 = defaultChecking { accountID = 001, accountCustomer = customer1, accountBalance = 1500.0 }
-        savings1 = defaultSavings { accountCustomer = customer1, accountBalance = 2000.0, interestRate = 0.05 }
-        
-    let bank = [savings1 , checking1]
-    accountSelect bank
+
+    accountSelect bank1
