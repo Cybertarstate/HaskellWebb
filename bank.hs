@@ -31,22 +31,35 @@ defaultSavings = SavingsAccount
     , interestRate = 0.00
     }
 
+deposit :: Double -> Account -> Account
+deposit amount (CheckingAccount id name balance) = CheckingAccount id name (balance + amount)
+deposit amount (SavingsAccount name balance rate) = SavingsAccount name (balance + amount) rate
+
+withdraw :: Double -> Account -> Account
+withdraw amount (CheckingAccount id name balance) 
+    | amount <= balance = CheckingAccount id name (balance - amount)
+    | otherwise = CheckingAccount id name balance
+withdraw amount (SavingsAccount name balance rate) 
+    | amount <= balance = SavingsAccount name (balance - amount) rate
+    | otherwise = SavingsAccount name balance rate
+
 -- Recursive menu function
-menu :: IO ()
-menu = do
+menu :: Account -> IO ()
+menu account = do
     putStrLn "\n===== Grouper Bank Group Inc. ====="
     putStrLn "1. Account Balance"
     putStrLn "2. Add Numbers"
-    putStrLn "3. Withdraw Funds"
-    putStrLn "4. Quit"
+    putStrLn "3. Deposit"
+    putStrLn "4. Withdraw"
+    putStrLn "5. Quit"
     putStr "Enter your choice: "
     hFlush stdout
 
     choice <- getLine
     case choice of
         "1" -> do
-            putStrLn "Account Balance Is...."
-            menu  -- recursively call menu again
+            putStrLn $ "Account Balance Is " ++ show (accountBalance account)
+            menu account-- recursively call menu again
         "2" -> do
             putStr "Enter first number: "
             hFlush stdout
@@ -55,20 +68,25 @@ menu = do
             hFlush stdout
             b <- readLn
             putStrLn $ "Sum is: " ++ show (a + b)
-            menu  -- loop back
+            menu account -- loop back
         "3" -> do
-            putStr "Enter first number: "
+            putStr "Enter the amount to deposit: "
             hFlush stdout
-            a <- readLn
-            putStr "Enter second number: "
+            amount <- readLn
+            let newAccount = deposit amount account
+            putStrLn $ "New balance: " ++ show (accountBalance newAccount)
+            menu newAccount
+        "4" -> do
+            putStr "Enter the amount to withdraw: "
             hFlush stdout
-            b <- readLn
-            putStrLn $ "Sum is: " ++ show (a + b)
-            menu  -- loop back
-        "4" -> putStrLn "Goodbye!"  -- stop recursion
+            amount <- readLn
+            let newAccount = withdraw amount account
+            putStrLn $ "New balance " ++ show (accountBalance newAccount)
+            menu newAccount
+        "5" -> putStrLn "Goodbye!"  -- stop recursion
         _   -> do
             putStrLn "Invalid choice, try again."
-            menu  -- loop back on invalid input
+            menu account -- loop back on invalid input
 
 -- Main function
 main :: IO ()
