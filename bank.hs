@@ -77,6 +77,6 @@ main = do
         checking1 = defaultChecking { accountID = 001, accountCustomer = customer1, accountBalance = 1500.0 }
         savings1 = defaultSavings { accountCustomer = customer1, accountBalance = 2000.0, interestRate = 0.05 }
         
-    let bank = savings1 : checking1 : bank
+    let bank = [savings1 , checking1]
     menu
 
