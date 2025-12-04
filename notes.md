@@ -68,7 +68,7 @@ until it is actually needed, anything required to produce an output will be eval
     Native executables
     Garbage collected
     Immutability
-
+    
 
 --function takes A and returns B
 -This is how Haskell handles randomness without side effects—it passes the 
@@ -122,14 +122,14 @@ lambda calculus(pure? thunks?)
 history:
 The story of lambda calculus and laziness.
 1978 Backus Naur Form and Fortran, puts functional programming on the map. 1960's Peter Landin and Christopher Strachey identified importance of lambda calculus for modelling programming languages. This laid foundation of operational semantics and denotational semantics. 1970's Scheme adheres more closely to lambda calculus by implementing lexical scoping. Laziness invented over 3 times during the 1970's and 1980's. August of 1980 first Lisp conference in StandFord, CA. Hope is a language that introduced algebraic data types. September of 1981, first conference on Functional Programming languages and computer architecture in Portsmouth, New Hampshire. September 1982, Second Lisp Conference, now referred to as Lisp and Functional Programming. The Lazy tower of Babel:Miranda,Lazy ML,Orwell,Alfl,Id,Clean,Ponder,Daisy. The problem, a majority of these languages lacked focus in areas of language-design effort, implementations, and users. Scheme and ML communities had developed their own standards. Fall of 1987 meeting at Functional Programming and Computer Architecture conference marked the beginning of the Haskell development process. They determined the best path forward was to start with a pre-existing language, of the lazy languages, Miranda was chosen. It was the most mature, pure, and well designed. David Turner the creator of Miranda, declined, he did not envision multiple dialects of Miranda in circulation. First meeting for official development on Haskell held January of 1988 at Yale. The first order of business determined the goals of this new language. It should be:
-`
+```
 1.Suitable for teaching, research, and applications
 2.Completely described via publication of a formal syntax and semantics
 3.freely available
 4.usable for further language research
 5.based on ideas that enjoy wide consensus
 6.replace unnecessary diversity in functional programming languages.
-`
+```
 
 Various committees met face to face at various universities and conferences, through the late 1980's. April 1990, Haskell Version 1.0, 125 page Report published, and Haskell mailing list established. 1994 Haskell gains internet presence via Haskell.org, server maintained at Yale.
 
