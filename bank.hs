@@ -2,13 +2,13 @@ import System.IO (hFlush, stdout)
 import Numeric (showFFloat)
 import Language.Haskell.TH.Syntax (justName)
 
-newtype Customer = Customer
+newtype Customer = Customer --new type signature with data constructor
     { customerName :: String
     } deriving (Show, Eq) --allows us to print Customers and compare them
 
 -- Modified Account to include a log for history
 -- We need to store the history inside the object since we can't use a global variable
-data Account = CheckingAccount 
+data Account = CheckingAccount --Algebraic Data Type with two constructors
     { accountID :: Int
     , accountCustomer :: Customer
     , accountBalance :: Double
@@ -23,11 +23,11 @@ data Account = CheckingAccount
     }
     deriving (Show, Eq) --allows us to print Accounts and compare them
 
-bank :: [Account]
-bank = []
+bank :: [Account] --type signature
+bank = [] --initial empty bank 
 
 defaultCustomer :: Customer
-defaultCustomer = Customer
+defaultCustomer = Customer 
     { customerName = ""
     }
 
@@ -143,7 +143,7 @@ customer1 = defaultCustomer { customerName = "Jimmy Buffet" }
     -- Create default accounts with initial logs
 checking1 = defaultChecking { accountID = 001, accountCustomer = customer1, accountBalance = 1500.0 }
 savings1 = defaultSavings { accountID = 002, accountCustomer = customer1, accountBalance = 2000.0, interestRate = 0.05 }        
-bank1 = [savings1 , checking1]
+bank1 = [checking1,savings1]
 
 main :: IO ()
 main = do
