@@ -15,17 +15,18 @@ data Account = CheckingAccount { accountCustomer :: Customer, accountBalance :: 
 -- Recursive menu function
 menu :: IO ()
 menu = do
-    putStrLn "\n===== Main Menu ====="
-    putStrLn "1. Say Hello"
-    putStrLn "2. Add two numbers"
-    putStrLn "3. Quit"
+    putStrLn "\n===== Grouper Bank Group Inc. ====="
+    putStrLn "1. Account Balance"
+    putStrLn "2. Add Numbers"
+    putStrLn "3. Withdraw Funds"
+    putStrLn "4. Quit"
     putStr "Enter your choice: "
     hFlush stdout
 
     choice <- getLine
     case choice of
         "1" -> do
-            putStrLn "Hello!"
+            putStrLn "Account Balance Is...."
             menu  -- recursively call menu again
         "2" -> do
             putStr "Enter first number: "
@@ -36,7 +37,16 @@ menu = do
             b <- readLn
             putStrLn $ "Sum is: " ++ show (a + b)
             menu  -- loop back
-        "3" -> putStrLn "Goodbye!"  -- stop recursion
+        "3" -> do
+            putStr "Enter first number: "
+            hFlush stdout
+            a <- readLn
+            putStr "Enter second number: "
+            hFlush stdout
+            b <- readLn
+            putStrLn $ "Sum is: " ++ show (a + b)
+            menu  -- loop back
+        "4" -> putStrLn "Goodbye!"  -- stop recursion
         _   -> do
             putStrLn "Invalid choice, try again."
             menu  -- loop back on invalid input
