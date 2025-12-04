@@ -43,12 +43,17 @@ withdraw amount (SavingsAccount name balance rate)
     | amount <= balance = SavingsAccount name (balance - amount) rate
     | otherwise = SavingsAccount name balance rate
 
+
+calcInterest :: Account -> Int -> Double
+calcInterest a 0 = accountBalance a
+calcInterest a n = (calcInterest a (n-1)) * (1.0 + interestRate a)
+
 -- Recursive menu function
 menu :: Account -> IO ()
 menu account = do
     putStrLn "\n===== Grouper Bank Group Inc. ====="
     putStrLn "1. Account Balance"
-    putStrLn "2. Add Numbers"
+    putStrLn "2. Calculate Interest"
     putStrLn "3. Deposit"
     putStrLn "4. Withdraw"
     putStrLn "5. Quit"
@@ -59,16 +64,13 @@ menu account = do
     case choice of
         "1" -> do
             putStrLn $ "Account Balance Is " ++ show (accountBalance account)
+            putStrLn $ "Account interest rate is " ++ show (interestRate account)
             menu account-- recursively call menu again
         "2" -> do
-            putStr "Enter first number: "
+            putStr "Enter number of years for interest: "
             hFlush stdout
-            a <- readLn
-            putStr "Enter second number: "
-            hFlush stdout
-            b <- readLn
-            putStrLn $ "Sum is: " ++ show (a + b)
-            menu account -- loop back
+            y <- readLn
+            putStrLn $ "Total is: " ++ show (calcInterest account y)
         "3" -> do
             putStr "Enter the amount to deposit: "
             hFlush stdout
@@ -96,5 +98,5 @@ main = do
         savings1 = defaultSavings { accountCustomer = customer1, accountBalance = 2000.0, interestRate = 0.05 }
         
     let bank = [savings1 , checking1]
-    menu
+    menu savings1
 
