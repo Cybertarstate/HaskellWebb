@@ -11,6 +11,9 @@ data Account = CheckingAccount { accountID :: Int, accountCustomer :: Customer, 
     | SavingsAccount  { accountCustomer :: Customer, accountBalance :: Double, interestRate :: Double }
     deriving (Show, Eq)
 
+bank :: [Account]
+bank = []
+
 defaultCustomer :: Customer
 defaultCustomer = Customer
     { customerName = ""
@@ -91,4 +94,7 @@ main = do
     let customer1 = defaultCustomer { customerName = "Jimmy Buffet" }
         checking1 = defaultChecking { accountID = 001, accountCustomer = customer1, accountBalance = 1500.0 }
         savings1 = defaultSavings { accountCustomer = customer1, accountBalance = 2000.0, interestRate = 0.05 }
-    menu checking1
+        
+    let bank = [savings1 , checking1]
+    menu
+
