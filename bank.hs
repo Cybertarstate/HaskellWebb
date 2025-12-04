@@ -1,16 +1,32 @@
 import System.IO (hFlush, stdout)
 
 
-data Customer = Customer
+newtype Customer = Customer
     { customerName :: String
-    , customerEmail :: String
     } deriving (Show, Eq)
 
 -- Account now contains a Customer and a balance
 --account needs ID, balance, customer and account type
-data Account = CheckingAccount { accountCustomer :: Customer, accountBalance :: Double }
+data Account = CheckingAccount { accountID :: Int, accountCustomer :: Customer, accountBalance :: Double }
     | SavingsAccount  { accountCustomer :: Customer, accountBalance :: Double, interestRate :: Double }
     deriving (Show, Eq)
+
+defaultCustomer :: Customer
+defaultCustomer = Customer
+    { customerName = ""
+    }
+defaultChecking :: Account
+defaultChecking = CheckingAccount
+    { accountID = 123,
+      accountCustomer = defaultCustomer
+    , accountBalance = 0.0
+    }
+defaultSavings :: Account
+defaultSavings = SavingsAccount
+    { accountCustomer = defaultCustomer
+    , accountBalance = 0.0
+    , interestRate = 0.00
+    }
 
 -- Recursive menu function
 menu :: IO ()
@@ -53,4 +69,8 @@ menu = do
 
 -- Main function
 main :: IO ()
-main = menu
+main = do
+    let customer1 = defaultCustomer { customerName = "Jimmy Buffet" }
+        checking1 = defaultChecking { accountID = 001, accountCustomer = customer1, accountBalance = 1500.0 }
+        savings1 = defaultSavings { accountCustomer = customer1, accountBalance = 2000.0, interestRate = 0.05 }
+    menu
